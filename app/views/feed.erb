@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <%Post.feed_Organizer.each do |post| %>
+      <h2><%= post.user.user_name %></h2>
+      <%= Post.time_parser(post.created_at)  %>
+      <br><br>
+      <%=post.post_content  %>
+      <br>
+      -----------------------------------------------------------------
+    <%end %>
+  </body>
+</html>
