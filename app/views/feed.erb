@@ -5,11 +5,15 @@
     <title></title>
   </head>
   <body>
-    <%Post.feed_Organizer.each do |post| %>
-      <h2><%= post.user.user_name %></h2>
+    <%Post.feed_Organizer(Post.all).each do |post| %>
+      <h2><a href="/users/<%= post.user.id %>"><%= post.user.user_name %></a></h2>
       <%= Post.time_parser(post.created_at)  %>
       <br><br>
-      <%=post.post_content  %>
+      <strong><%=post.post_content  %></strong>
+      <br>
+      <%post.tags.each do |tag| %>
+      <%= tag.name %>
+      <% end %>
       <br>
       -----------------------------------------------------------------
     <%end %>

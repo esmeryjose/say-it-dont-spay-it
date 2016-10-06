@@ -11,7 +11,7 @@ class Post < ActiveRecord::Base
   def self.day_time_parser(day_time)
     new_time = day_time.split(":")
     if new_time[0].to_i >=12
-      new_time[0] = (new_time[0].to_i - 12).to_s
+      new_time[0] = (new_time[0].to_i - 11).to_s
       new_time = new_time.join(":")
       new_time << "PM"
     else
@@ -27,8 +27,8 @@ class Post < ActiveRecord::Base
     new_time.join("-")
   end
 
-  def self.feed_Organizer
-    Post.all.sort { |a,b| b.created_at <=> a.created_at }
+  def self.feed_Organizer(posts)
+    posts.sort { |a,b| b.created_at <=> a.created_at }
   end
 
 end
