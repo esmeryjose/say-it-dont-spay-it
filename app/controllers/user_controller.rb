@@ -9,7 +9,6 @@ class UserController < ApplicationController
   end
 
   post '/signup' do
-    binding.pry
     @user = User.create(params)
     session[:user_id] = @user.id
     redirect "/users/#{@user.id}"

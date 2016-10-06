@@ -6,81 +6,59 @@
  </head>
  <body>
    <nav class="navbar navbar-inverse">
-     <div class="container-fluid">
-     <% if logged_in? %>
-       <div class="navbar-header">
-         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-           <span class="sr-only">Toggle navigation</span>
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
-         </button>
-         <a class="navbar-brand" href="/products"></a>
-       </div>
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <h2>Say It Dont Spray It</h2>
+        </div>
 
-       <div class="navbar-header">
-         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-           <span class="sr-only">Toggle navigation</span>
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
-         </button>
-         <a class="navbar-brand" href="/users/<%= session[:user_id]%>">Home</a>
-       </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+          <% if logged_in? %>
+          <ul class="nav navbar-nav">
+            <li><a href="/">Feed</a></li>
+            <li><a href="/users/<%= session[:user_id]%>">Home</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/logout">LogOut</a></li>
+          </ul>
+          <% else %>
 
-       <div class="navbar-header">
-         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-           <span class="sr-only">Toggle navigation</span>
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
-         </button>
-         <a class="navbar-brand" href="/logout">LogOut</a>
-       </div>
+          <form action="/login" method="post" class="navbar-form navbar-right">
+            <div class="form-group">
+              <input class="form-control login" name="user_name" placeholder="User Name">
+              <input type="password" class="form-control"  name="password" id="inputPassword" placeholder="Password">
+              <input type="submit" class="btn btn-succes" value="Log In">
+            </div>
+          </form>
+          <% end %>
+        </div>
+      </div>
+    </nav>
 
-     <% else %>
+   <!-- NAVBAR  -->
 
-       <div class="navbar-header">
-         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-           <span class="sr-only">Toggle navigation</span>
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
-         </button>
-         <a class="navbar-brand" href="/">Say It Dont Spray It</a>
-       </div>
-       <div class="container-fluid">
-         <div class="navbar-header">
-           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-             <span class="sr-only">Toggle navigation</span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-           </button>
-         </div>
-         <div class="navbar-header">
-           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-             <span class="sr-only">Toggle navigation</span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-           </button>
-           <form action="/login" method="post">
-             <input class="form-control" name="user_name" placeholder="User Name">
-             <input type="password" class="form-control"  name="password" id="inputPassword" placeholder="Password">
-             <input type="submit" class="btn btn-success" value="Log In">
-           </form>
-
-         </div>
-         <%end%>
-       </div>
-   </nav>
    <div class="container">
      <%= yield %>
    </div>
  </body>
  <footer>
-   <br><br><br><br><br><br><br>
    <h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &copy;Say It Dont Spray It 2016</h3>
  </footer>
 </html>
+
+<style>
+footer{
+    font-size:small;
+    text-align:center;
+    height:50px;
+    background-color:black;
+    clear: both;
+    display: block;
+    margin-top: 270px !important;
+}
+</style>
