@@ -10,11 +10,11 @@ class PostController < ApplicationController
 
   post '/create' do
     if params[:posts][:post_content].strip.empty?
-      redirect to "/users/#{@user.id}"
+      redirect to "/users/#{current_user.id}"
     end
     @user = User.find_by(id: session[:user_id])
     @post = Post.create(params[:posts])
-    if !params[:tags][:name].empty?
+    if !params[:tags][:name].strip.empty?
       @post.tags << Tag.create(name: params[:tags][:name])
     end
     @user.posts << @post
@@ -23,6 +23,7 @@ class PostController < ApplicationController
   end
 
   get "/posts/:id/edit" do
+
     @post = Post.find_by(id: params[:id])
     if current_user.id == @post.user.id
       erb :'/posts/edit'
@@ -34,7 +35,8 @@ class PostController < ApplicationController
 
   delete "/posts/:id" do
     @user = current_user
-    @user.posts.delete(params[:id])
+    # @user.posts.delete(params[:id])
+    @post = Post.find_by(id: params[:id])
     redirect to "/users/#{@user.id}"
   end
 
