@@ -25,13 +25,6 @@ class UserController < ApplicationController
     end
   end
 
-  # get '/login' do
-  #   if !session[:user_id]
-  #     erb :'users/login'
-  #   else
-  #     redirect "/users/#{session[:user_id]}"
-  #   end
-  # end
 
   post '/login' do
     @user = User.find_by(user_name: params[:user_name])
